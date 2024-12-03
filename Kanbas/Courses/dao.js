@@ -5,6 +5,7 @@ export function findAllCourses() {
 
 export function getCourseById(courseId) {
     const {courses} = Database;
+    console.log("Given this course Id: ", courseId);
     const course = courses.find((course) => course._id === courseId);
     if (!course) {
         throw new Error(`Assignment with ID ${courseId} not found`);
