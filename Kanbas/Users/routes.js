@@ -4,8 +4,16 @@ import * as enrollmentsDao from "../Enrollments/dao.js";
 import {findCoursesForEnrolledUser} from "../Courses/dao.js";
 
 export default function UserRoutes(app) {
-    const createUser = (req, res) => { };
-    const deleteUser = (req, res) => { };
+    const createUser = async (req, res) => {
+        const user = await dao.createUser(req.body);
+        res.json(user);
+    };
+
+    const deleteUser = async (req, res) => {
+        const status = await dao.deleteUser(req.params.userId);
+        res.json(status);
+    };
+
 
     const findAllUsers = async (req, res) => {
         const { role, name } = req.query;
@@ -29,15 +37,17 @@ export default function UserRoutes(app) {
         res.json(user);
     };
 
-
-    const updateUser = (req, res) => {
-        const userId = req.params.userId;
+    const updateUser = async (req, res) => {
+        const { userId } = req.params;
         const userUpdates = req.body;
-        dao.updateUser(userId, userUpdates);
-        const currentUser = dao.findUserById(userId);
-        req.session["currentUser"] = currentUser;
+        await dao.updateUser(userId, userUpdates);
+        const currentUser = req.session["currentUser"];
+        if (currentUser && currentUser._id === userId) {
+            req.session["currentUser"] = { ...currentUser, ...userUpdates };
+        }
         res.json(currentUser);
     };
+
 
     const signup = async (req, res) => {
         const user = await dao.findUserByUsername(req.body.username);
@@ -53,6 +63,7 @@ export default function UserRoutes(app) {
     const signin = async (req, res) => {
         const { username, password } = req.body;
         const currentUser = await dao.findUserByCredentials(username, password);
+        console.log(currentUser)
         if (currentUser) {
             req.session["currentUser"] = currentUser;
             res.json(currentUser);
@@ -66,6 +77,7 @@ export default function UserRoutes(app) {
 
     const profile = async (req, res) => {
         const currentUser = req.session["currentUser"];
+        console.log('profile', currentUser)
         if (!currentUser) {
             res.sendStatus(401);
             return;
@@ -119,6 +131,7 @@ export default function UserRoutes(app) {
         const courses = courseDao.findCoursesForEnrolledUser(userId);
         res.json(courses);
     }
+
 
     app.post("/api/users", createUser);
     app.get("/api/users", findAllUsers);
