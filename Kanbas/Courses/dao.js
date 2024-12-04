@@ -1,5 +1,4 @@
 import model from "./model.js";
-import Database from "../Database/index.js";
 export function findAllCourses() {
     return model.find();
 }
