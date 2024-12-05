@@ -1,4 +1,5 @@
 import * as assignmentsDao from "./dao.js";
+import * as modulesDao from "../Modules/dao.js";
 export default function AssignmentRoutes(app) {
     app.get("/api/assignments/:assignmentId", async (req, res) => {
         const { assignmentId } = req.params;
@@ -18,4 +19,5 @@ export default function AssignmentRoutes(app) {
         const status = await assignmentsDao.updateAssignment(assignmentId, assignmentUpdates);
         res.send(status);
     });
+
 }
