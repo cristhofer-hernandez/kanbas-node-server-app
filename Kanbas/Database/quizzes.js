@@ -10,7 +10,7 @@ export default [
         multiple_attempts: false,
         attempts_allowed: "1",
         due_date: "",
-        assign_date: "",
+        assign_to: "",
         available_date: "",
         until_date: "",
         points: "100",
