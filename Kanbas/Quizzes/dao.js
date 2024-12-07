@@ -22,6 +22,20 @@ export function findQuizzesForCourse(courseId) {
     return quizzes.filter((quiz) => quiz.course === courseId);
 }
 
+// export function findQuestionsForQuiz(quizId) {
+//     const { quizzes } = Database;
+//     return quizzes.filter((quiz) => quiz._id === quizId);
+// }
+//
+// export function createQuestionForQuiz(quizId, question) => {
+//     const response = await axios.post(
+//         `${QUIZZES_API}/${quizId}/quizzes`,
+//         question
+//     );
+//     return response.data;
+// };
+
+
 export function deleteQuiz(quizId) {
     const { quizzes } = Database;
     Database.quizzes = quizzes.filter((quiz) => quiz._id !== quizId);

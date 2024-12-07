@@ -24,7 +24,9 @@ export default [
         questions: [
             {
                 _id: "Q1-RS101-Question1",
+                title: "Q1-RS101-Question1",
                 q_type: "Multiple Choice",
+                q_points: "10",
                 q_description: "What is a rocket?",
                 quiz: "Q1-RS101",
                 answers: [
@@ -36,7 +38,9 @@ export default [
             },
             {
                 _id: "Q1-RS101-Question2",
+                title: "Q1-RS101-Question2",
                 q_type: "True/False",
+                q_points: "10",
                 q_description: "A Rocket is a Machine",
                 quiz: "Q1-RS101",
                 answers: [
@@ -46,7 +50,9 @@ export default [
             },
             {
                 _id: "Q1-RS101-Question3",
+                title: "Q1-RS101-Question3",
                 q_type: "Fill In The Blank",
+                q_points: "10",
                 q_description: "A Rocket is a _______",
                 quiz: "Q1-RS101",
                 answers: [
@@ -82,7 +88,9 @@ export default [
         questions: [
             {
                 _id: "Q1-RS101-Question1",
+                title: "Q1-RS101-Question1",
                 q_type: "Multiple Choice",
+                q_points: "10",
                 q_description: "What is a rocket?",
                 quiz: "Q1-RS101",
                 answers: [
@@ -94,7 +102,9 @@ export default [
             },
             {
                 _id: "Q1-RS101-Question2",
+                title: "Q1-RS101-Question2",
                 q_type: "True/False",
+                q_points: "10",
                 q_description: "A Rocket is a fruit",
                 quiz: "Q1-RS101",
                 answers: [
@@ -104,7 +114,9 @@ export default [
             },
             {
                 _id: "Q1-RS101-Question3",
+                title: "Q1-RS101-Question3",
                 q_type: "Fill In The Blank",
+                q_points: "10",
                 q_description: "Rockes are used by _______",
                 quiz: "Q1-RS101",
                 answers: [
