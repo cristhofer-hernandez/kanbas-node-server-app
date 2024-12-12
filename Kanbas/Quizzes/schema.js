@@ -35,6 +35,7 @@ const schema = new mongoose.Schema(
         lock_questions: Boolean,
         webcam_required: Boolean,
         access_code: String,
+        published: Boolean,
         course: { type: mongoose.Schema.Types.ObjectId, ref: "CourseModel" },
         description: String,
         questions: [questionSchema]
