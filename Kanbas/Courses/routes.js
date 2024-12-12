@@ -23,21 +23,21 @@ export default function CourseRoutes(app)
     });
 
 
-    app.post("/api/courses/:courseId/quizzes", (req, res) => {
+    app.post("/api/courses/:courseId/quizzes", async (req, res) => {
         const { courseId } = req.params;
         const quiz = {
             ...req.body,
             course: courseId,
         };
         console.log("Requesting courseId:", courseId);
-        const newAssignment = quizzesDao.createQuiz(quiz);
+        const newAssignment = await quizzesDao.createQuiz(quiz);
         res.send(newAssignment);
     });
 
 
-    app.get("/api/courses/:courseId/quizzes", (req, res) => {
+    app.get("/api/courses/:courseId/quizzes", async (req, res) => {
         const { courseId } = req.params;
-        const quizzes = quizzesDao.findQuizzesForCourse(courseId);
+        const quizzes = await quizzesDao.findQuizzesForCourse(courseId);
         res.json(quizzes);
     });
 

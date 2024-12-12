@@ -1,4 +1,6 @@
 import * as quizzesDao from "./dao.js";
+import * as resultsDao from "../Results/dao.js"
+import {findResultsForQuiz} from "../Results/dao.js";
 export default function QuizRoutes(app) {
     app.get("/api/quizzes/:quizId", async (req, res) => {
         const { quizId } = req.params;
@@ -19,9 +21,23 @@ export default function QuizRoutes(app) {
         res.send(status);
     });
 
-    // app.get("/api/quizzes/:quizId/quizzes", (req, res) => {
-    //     const { courseId } = req.params;
-    //     const quizzes = quizzesDao.findQuestionsForQuiz(courseId);
-    //     res.json(quizzes);
-    // });
+    app.get("/api/quizzes/:quizId/:userId/results", async (req, res) => {
+        const { quizId, userId } = req.params;
+        const results = await resultsDao.findResultsForQuiz(quizId, userId);
+        res.json(results);
+    });
+
+    app.post("/api/quizzes/:quizId/:userId/results", async (req, res) => {
+        const { quizId, userId } = req.params;
+        const result = {
+            ...req.body,
+            quiz: quizId,
+            user: userId,
+        };
+        console.log("Requesting courseId:", quizId);
+        const newResult = await resultsDao.createResult(result);
+        res.send(newResult);
+    });
+
+
 }
